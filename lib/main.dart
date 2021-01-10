@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'src/common/variables.dart';
 import 'src/ui/bluetooth/blutoothUi.dart';
 import 'src/ui/wifi/wifiUi.dart';
+import 'src/utils/runBackService.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: StartApp(),
+      home: AppRetainWidget(
+        child: StartApp(),
+      ),
     );
   }
 }
@@ -34,9 +37,9 @@ class _StartAppState extends State<StartApp> {
   }
 
   startNoti() async {
-
     await notificationsManager.initializeNotifications();
-     notificationsManager.showNotifications("Connection: $connectionStatus \nBlutooth: $bluStatus");
+    notificationsManager.showNotifications(
+        "Connection: $connectionStatus \nBlutooth: $bluStatus");
   }
 
   @override
